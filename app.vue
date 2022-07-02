@@ -9,6 +9,8 @@
         type="image/x-icon"
       />
     </Head>
-    <h1 class="text-2xl">Hello World</h1>
+    <Container>
+      <h1 class="text-2xl">Hello World</h1>
+    </Container>
   </div>
 </template>

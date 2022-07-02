@@ -1,16 +1,24 @@
 <script setup>
-  const { data, pending, error } = await useFetch(
-    'https://api.adviceslip.com/advice'
-  );
-
   const id = ref('##');
   const advice = ref('');
 
-  if (!error.value) {
-    const slip = JSON.parse(data.value).slip;
-    id.value = slip.id;
-    advice.value = slip.advice;
-  }
+  const { data, pending, error, refresh } = await useFetch(
+    'https://api.adviceslip.com/advice'
+  );
+
+  const handleData = () => {
+    if (!error.value) {
+      const slip = JSON.parse(data.value).slip;
+      id.value = slip.id;
+      advice.value = slip.advice;
+    }
+  };
+  const handleClick = () => {
+    refresh();
+    handleData();
+  };
+
+  handleData();
 </script>
 
 <template>
@@ -44,7 +52,7 @@
       />
     </picture>
     <div class="absolute -bottom-8 left-1/2 -translate-x-1/2">
-      <Button />
+      <Button @click="handleClick" />
     </div>
   </div>
 </template>

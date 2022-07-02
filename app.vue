@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-dark-blue h-screen flex justify-center items-center">
     <Head>
       <Title>Advice Generator App</Title>
       <Meta name="description" content="Generate random advice!" />

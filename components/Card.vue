@@ -1,0 +1,28 @@
+<template>
+  <div
+    className="bg-dark-grayish-blue text-center pt-10 pb-16 px-8 rounded-xl relative md:px-12 md:pt-12 md:pb-20"
+  >
+    <h1 className="text-neon-green text-sm font-semibold tracking-widest">
+      Advice #69
+    </h1>
+    <blockquote className="text-[28px] text-light-cyan font-extrabold mt-6">
+      "It's easy to sit up and take notice, what's difficult is getting up and
+      taking action."
+    </blockquote>
+    <picture>
+      <source
+        srcSet="/images/pattern-divider-mobile.svg"
+        media="(max-width: 400px)"
+      />
+      <source srcSet="/images/pattern-divider-desktop.svg" />
+      <img
+        className="mt-6 md:mt-8 w-full"
+        src="/images/pattern-divider-desktop.svg"
+        alt=""
+      />
+    </picture>
+    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+      <Button />
+    </div>
+  </div>
+</template>

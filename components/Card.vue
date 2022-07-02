@@ -1,13 +1,20 @@
+<script setup>
+  const { data, pending, error } = await useFetch(
+    'https://api.adviceslip.com/advice'
+  );
+
+  const slip = ref(JSON.parse(data.value).slip);
+</script>
+
 <template>
   <div
     class="bg-dark-grayish-blue text-center pt-10 pb-16 px-8 rounded-xl relative md:px-12 md:pt-12 md:pb-20"
   >
     <h1 class="text-neon-green text-sm font-semibold tracking-widest">
-      Advice #69
+      Advice #{{ data ? slip.id : '##' }}
     </h1>
     <blockquote class="text-[28px] text-light-cyan font-extrabold mt-6">
-      "It's easy to sit up and take notice, what's difficult is getting up and
-      taking action."
+      "{{ slip.advice }}"
     </blockquote>
     <picture>
       <source

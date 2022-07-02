@@ -3,7 +3,14 @@
     'https://api.adviceslip.com/advice'
   );
 
-  const slip = ref(JSON.parse(data.value).slip);
+  const id = ref('##');
+  const advice = ref('');
+
+  if (!error.value) {
+    const slip = JSON.parse(data.value).slip;
+    id.value = slip.id;
+    advice.value = slip.advice;
+  }
 </script>
 
 <template>
@@ -11,11 +18,19 @@
     class="bg-dark-grayish-blue text-center pt-10 pb-16 px-8 rounded-xl relative md:px-12 md:pt-12 md:pb-20"
   >
     <h1 class="text-neon-green text-sm font-semibold tracking-widest">
-      Advice #{{ data ? slip.id : '##' }}
+      Advice #{{ id }}
     </h1>
-    <blockquote class="text-[28px] text-light-cyan font-extrabold mt-6">
-      "{{ slip.advice }}"
-    </blockquote>
+    <div class="mt-6">
+      <p v-if="pending" class="text-[28px] text-light-cyan font-extrabold">
+        Loading...
+      </p>
+      <p v-else-if="error" class="text-[28px] text-red-200 font-extrabold">
+        Error loading advice!
+      </p>
+      <blockquote v-else class="text-[28px] text-light-cyan font-extrabold">
+        "{{ advice }}"
+      </blockquote>
+    </div>
     <picture>
       <source
         srcSet="/images/pattern-divider-mobile.svg"
